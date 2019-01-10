@@ -1,0 +1,339 @@
+/* Variable declarations */
+:root {
+    --yellow:       #FFC000;
+    --bright-blue:  #00B0F0;
+    --orange:       #FF6600;
+    --green:        #70AD47;
+    --dark-blue:    #333F50;
+    --blue:         #44546A;
+    --gray:         #95989A
+  }
+  
+  .dark-theme {
+    background-color: var(--dark-blue)
+  }
+  
+  .navbar-container {
+    background: var(--blue);
+    position: absolute;
+    margin-top: 3.7vh;
+    width: 95.8%;
+    left: 2.1vw;
+    top:0
+  }
+  
+  .navbar-light .navbar-nav .nav-link.active {
+    color: var(--yellow)
+  }
+  
+  .navbar-toggler {
+    position: absolute;
+    right: 0
+  }
+  
+  #home-video-container {
+    background-color: #F1F9FF;
+    position:relative;
+    height:96vh;
+    width:98vw;
+    height:96vh;
+    left: 1vw;
+    top:2vh
+  }
+  
+  #home-banner {
+    position:absolute;
+    width:100%;
+    top:22.5vh
+  }
+  
+  .home-button-row {
+    position:absolute;
+    width:100%;
+    top:55vh 
+  }
+  
+  .my-main-container {
+    margin-top: 15vh;
+  }
+  
+  .page-title {
+    color: var(--yellow);
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1
+  }
+  
+  .body-copy {
+    color: white
+  }
+  
+  #contact-title {
+    color: #7F7F7F;
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1
+  }
+  
+  #social-media-row {
+    margin-top: 1.5em
+  }
+  
+  /* This class comes from server-side JS */
+  #contact-success {
+    color: #70AD47;
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1
+  }
+  
+  /* This class comes from server-side JS */
+  #contact-error {
+    color: #FF6600;
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1
+  }
+  
+  #resume-left-side {
+    padding-left: 3vw;
+    padding-top: 3em
+  }
+  
+  .resume-section {
+    margin-bottom: 3em
+  }
+  
+  .resume-section-title {
+    letter-spacing: 0.75px;
+    font-family: Georgia;
+    color: var(--yellow);
+    font-size: 1.33em;
+    font-weight: 500
+  }
+  
+  .resume-entry {
+    
+  }
+  
+  .resume-logo-lg {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    height: 2.33em
+  }
+  
+  .resume-entry-headline {
+    font-weight: 300;
+    font-size: 1em;
+    color: white
+  }
+  
+  .resume-entry-headline span:nth-child(1) {
+    color: var(--bright-blue);
+    font-weight: 600
+  }
+  
+  .resume-entry-headline span:nth-child(2) {
+    color: var(--orange)
+  }
+  
+  .resume-entry-headline span:last-child {
+    color: white
+  }
+  
+  .resume-entry-body {
+    color: white
+  }
+  
+  #resume-skills-side {
+    padding-left: 12%;
+    padding-top: 3em
+  }
+  
+  .resume-skills-header {
+    letter-spacing: 0.75px;
+    font-family: Georgia;
+    color: var(--yellow);
+    font-size: 1.33em;
+    font-weight: 500
+  }
+  
+  .resume-skills-section {
+    
+  }
+  
+  .resume-skills-subtitle {
+    color: var(--bright-blue);
+    font-size: 1em
+  }
+  
+  .skills-large {
+    /* Preformatted text uses monospace fonts by default*/
+    font-family: inherit;
+    color: var(--gray)
+  }
+  
+  .resume-title {
+    text-align:center;
+    font-size:1.75rem;
+    font-weight:300;
+    line-height:1.1;
+    color:#FFF
+  }
+  
+  .resume-card {
+    background-color: transparent
+  }
+  
+  .resume-card-header {
+    background-color: rgba(255,255,255,.1)
+  }
+  
+  .resume-card-title {
+    color: rgba(255,192,0,.85);
+    font-size:1.75rem;
+  }
+  
+  .resume-card-block {
+    
+  }
+  
+  .skill-card-section {
+    
+  }
+  
+  .skill-card-subtitle {
+    color: var(--bright-blue);
+    font-size: 1em
+  }
+  
+  .card-skills {
+    /* Preformatted monospace fonts */
+    color: var(--gray)
+  }
+  
+  .card-subsection {
+    
+  }
+  
+  .resume-logo-sm {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    height: 4em
+  }
+  
+  .card-subsection-headline {
+    font-weight: 300;
+    font-size: 1em;
+    color: white
+  }
+  
+  .card-subsection-headline span:nth-child(1) {
+    color: var(--bright-blue);
+    font-weight: 600
+  }
+  
+  .card-subsection-headline span:nth-child(2) {
+    color: var(--orange)
+  }
+  
+  .card-subsection-headline span:last-child {
+    color: white
+  }
+  
+  .card-subsection-body {
+    color: white
+  }
+  
+  #guestbook-title {
+    margin-bottom: .75em;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1.1;
+    color: #7F7F7F
+  }
+  
+  #guestbook-form {
+    background-color: #F5F5F5;
+    border-color: #7F7F7F;
+    border-radius: .33em;
+    border-style: solid;
+    border-width: 1px;
+  }
+  
+  #guestbook-form .form-group:nth-child(1) {
+    margin-bottom: 0px;
+  }
+  
+  .gb-form-input {
+    background-color: transparent;
+    color: #2699FB;
+    border: none
+  }
+  
+  .gb-form-input:focus {
+    background-color: transparent
+  }
+  
+  .gb-form-input::placeholder {
+    color: #2699FB
+  }
+  
+  #gb-form-line {
+    border-bottom: 1px solid var(--gray);
+    margin-left: .8em
+  }
+  
+  #guestbook-form button {
+    margin-bottom: .5em;
+    margin-right: .5em;
+    float: right
+  }
+  
+  #guestbook-form:after {
+    content: "";
+    clear: both;
+    display: block
+  }
+  
+  #guestbook-hr {
+    margin-top: 1.5em
+  }
+  
+  .guestbook-card {
+    background-color: transparent;
+    border-color: var(--gray);
+    margin-bottom: 3em;
+    border-radius: .33em;
+    border-style: solid;
+    border-width: 1px;
+  }
+  
+  .guestbook-card-name {
+    font-family: Arial;
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 1em
+  }
+  
+  .guestbook-card-date {
+    color: var(--orange);
+    margin-bottom: 1.75em;
+    font-family: Arial;
+    font-size: .75em
+  }
+  
+  .guestbook-card-name {
+    font-family: Arial;
+    font-weight: 600;
+    color: var(--blue);
+  }
+  
+  .guestbook-card-msg {
+    color: #7F7F7F;
+  }
