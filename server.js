@@ -1,5 +1,10 @@
-const express = require('express')
-const app = express()
+const express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    handlebars = require('handlebars');
+    handlebarsIntl = require('handlebars-intl'),
+    credentials = require('./credentials') /* Must supply your own credentials */
+
 
 // Serve static resources
 app.use(express.static(__dirname + '/public'));
@@ -9,10 +14,85 @@ var exphbs = require('express-handlebars');
 app.engine('html', exphbs());
 app.set('view engine', 'html');
 
-app.get('/', function (req, res) {
-    'use strict'
-    res.render('index.html')
+// Register Handlebars helpers
+handlebarsIntl.registerWith(handlebars);
+
+// Parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// MySQL Initialization
+var mysqldb = require('./mysqldb');
+var db = mysqldb.db;
+mysqldb.connectToDatabase();
+
+// Routing
+app.get('/', (req, res) => {
+let sqlQuery = 'SELECT name, date, msg FROM guestbook ORDER BY id DESC';
+db.query(sqlQuery, (error, result) => {
+    if (error) {
+    console.error(error);
+    res.send('query-error');
+    } else {
+    // Organize data into a useable object
+    resultObj = {
+        // The 'result' is originally passed as an array
+        // 'guestbookPosts' is the name of the array our handlebars code is expecting
+        guestbookPosts: result
+    };
+    res.render('index.html', resultObj);
+    }
 })
+})
+
+app.post('/guestbook', (req, res) => {
+    const name = req.body.posterName || 'Anonymous',
+            msg = req.body.posterMessage
+
+    let sqlQuery = 'INSERT INTO guestbook (name, msg) VALUES (\'' + name + '\',\'' + msg + '\')';
+    db.query(sqlQuery, (error, result) => {
+        if (error) {
+        console.error(error);
+        res.send('query-error');
+        } else {
+        // Send an email, query the database and re-render the page
+        const mailgun = require('mailgun-js')({
+            domain: credentials.mailgunDomain,
+            apiKey: credentials.mailgunKey
+        });
+
+        const data = {
+            from: 'TyrellMcCurbin.com <tmccurbin@gmail.com>',
+            to: 'tmccurbin@gmail.com',
+            subject: 'Guestbook post from ' + req.body.posterName,
+            text: req.body.posterMessage
+        }
+
+        mailgun.messages().send(data, (error, body) => {
+            // Check for errors (optional)
+        })
+        
+        // GET RID OF THIS CODE BLOCK ONCE I IMPLEMENT SOCKETS
+        // Currently, everything happens so quickly that I could forego socket implementation for a while
+        // The problem is that clients that aren't posting wont see the updates until they refresh
+        sqlQuery = 'SELECT name, date, msg FROM guestbook ORDER BY id DESC';
+        db.query(sqlQuery, (error, result) => {
+            if (error) {
+            console.error(error);
+            res.send('query-error');
+            } else {
+            // Organize data into a useable object
+            newResultObj = {
+                // The 'result' is originally passed as an array
+                // 'guestbookPosts' is the name of the array our handlebars code is expecting
+                guestbookPosts: result
+            };
+            res.render('guestbook', newResultObj);
+            }
+        })
+        }
+    });
+})
+
 
 app.set('port', process.env.PORT || 3000);
 

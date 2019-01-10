@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/tmccurbin/guestbook#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.12",
+    "handlebars-intl": "^1.1.2",
+    "mysql": "^2.16.0"
   }
 }
