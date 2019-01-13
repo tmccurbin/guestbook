@@ -88,7 +88,7 @@ app.post('/', (req, res) => {
                 // 'guestbookPosts' is the name of the array our handlebars code is expecting
                 guestbookPosts: result
             };
-            res.render('guestbook', newResultObj);
+            res.render('index', newResultObj);
             }
         })
         }
