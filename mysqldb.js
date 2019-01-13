@@ -1,12 +1,15 @@
 var mysql = require('mysql');
-var credentials = require('./credentials');
+var dotenv = require('dotenv')
+
+// Configure environment variables
+dotenv.config()
 
 var db = mysql.createConnection({
   // Properties
-  host: credentials.dbHost,
-  user: credentials.dbUser,
-  password: credentials.dbPassword,
-  database: credentials.database
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DATABASE
 });
 
 var connectToDatabase = function() {

@@ -1,10 +1,12 @@
 const express = require('express'),
     app = express(),
+    dotenv = require('dotenv'),
     bodyParser = require('body-parser'),
     handlebars = require('handlebars');
     handlebarsIntl = require('handlebars-intl'),
-    credentials = require('./credentials') /* Must supply your own credentials */
 
+// Configure environment variables
+dotenv.config();
 
 // Serve static resources
 app.use(express.static(__dirname + '/public'));
@@ -56,8 +58,8 @@ app.post('/', (req, res) => {
         } else {
         // Send an email, query the database and re-render the page
         const mailgun = require('mailgun-js')({
-            domain: credentials.mailgunDomain,
-            apiKey: credentials.mailgunKey
+            domain: process.env.MAILGUN_DOMAIN,
+            apiKey: process.env.MAILGUN_KEY
         });
 
         const data = {
