@@ -23,11 +23,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // MySQL Initialization
 var mysqldb = require('./mysqldb');
 var db = mysqldb.db;
-mysqldb.connectToDatabase();
+// mysqldb.connectToDatabase(); // *****
 
 // Routing
 app.get('/', (req, res) => {
 let sqlQuery = 'SELECT name, date, msg FROM guestbook ORDER BY id DESC';
+/*
 db.query(sqlQuery, (error, result) => {
     if (error) {
     console.error(error);
@@ -41,10 +42,11 @@ db.query(sqlQuery, (error, result) => {
     };
     res.render('index.html', resultObj);
     }
-})
+}) */
+    res.render('index.html') // *****
 })
 
-app.post('/guestbook', (req, res) => {
+app.post('/', (req, res) => {
     const name = req.body.posterName || 'Anonymous',
             msg = req.body.posterMessage
 
