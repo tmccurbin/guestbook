@@ -24,13 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // MySQL Initialization
 var mysqldb = require('./mysqldb');
-var db = mysqldb.db;
 mysqldb.connectToDatabase();
 
 // Routing
 app.get('/', (req, res) => {
 let sqlQuery = 'SELECT name, date, msg FROM guestbook ORDER BY id DESC';
-db.query(sqlQuery, (error, result) => {
+mysqldb.connection.query(sqlQuery, (error, result) => {
     if (error) {
     console.error(error);
     res.send('query-error');
@@ -51,7 +50,7 @@ app.post('/', (req, res) => {
             msg = req.body.posterMessage
 
     let sqlQuery = 'INSERT INTO guestbook (name, msg) VALUES (\'' + name + '\',\'' + msg + '\')';
-    db.query(sqlQuery, (error, result) => {
+    mysqldb.connection.query(sqlQuery, (error, result) => {
         if (error) {
         console.error(error);
         res.send('query-error');
@@ -77,7 +76,7 @@ app.post('/', (req, res) => {
         // Currently, everything happens so quickly that I could forego socket implementation for a while
         // The problem is that clients that aren't posting wont see the updates until they refresh
         sqlQuery = 'SELECT name, date, msg FROM guestbook ORDER BY id DESC';
-        db.query(sqlQuery, (error, result) => {
+        mysqldb.connection.query(sqlQuery, (error, result) => {
             if (error) {
             console.error(error);
             res.send('query-error');
